@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 import sys
 from PySide import QtGui
 from MainWindow import MainWindow

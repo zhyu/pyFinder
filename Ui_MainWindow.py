@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/zhyu/Dropbox/workspace/pyFinder/MainWindow.ui'
+# Form implementation generated from reading ui file '/home/zhyu/workspace/pyFinder/MainWindow.ui'
 #
-# Created: Fri Dec 21 21:59:40 2012
+# Created: Sun Dec 23 16:06:16 2012
 #      by: pyside-uic 0.2.13 running on PySide 1.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -43,15 +43,16 @@ class Ui_MainWindow(object):
         self.buttonBox = QtGui.QGroupBox(self.centralWidget)
         self.buttonBox.setGeometry(QtCore.QRect(20, 260, 431, 61))
         self.buttonBox.setObjectName("buttonBox")
+        self.useBMHBNFS = QtGui.QRadioButton(self.buttonBox)
+        self.useBMHBNFS.setGeometry(QtCore.QRect(40, 30, 94, 21))
+        self.useBMHBNFS.setChecked(True)
+        self.useBMHBNFS.setObjectName("useBMHBNFS")
         self.useKMP = QtGui.QRadioButton(self.buttonBox)
-        self.useKMP.setGeometry(QtCore.QRect(40, 30, 94, 21))
+        self.useKMP.setGeometry(QtCore.QRect(170, 30, 94, 21))
         self.useKMP.setObjectName("useKMP")
         self.useBM = QtGui.QRadioButton(self.buttonBox)
-        self.useBM.setGeometry(QtCore.QRect(170, 30, 94, 21))
+        self.useBM.setGeometry(QtCore.QRect(300, 30, 94, 21))
         self.useBM.setObjectName("useBM")
-        self.useBMHBNFS = QtGui.QRadioButton(self.buttonBox)
-        self.useBMHBNFS.setGeometry(QtCore.QRect(300, 30, 94, 21))
-        self.useBMHBNFS.setObjectName("useBMHBNFS")
         MainWindow.setCentralWidget(self.centralWidget)
 
         self.retranslateUi(MainWindow)
@@ -63,12 +64,13 @@ class Ui_MainWindow(object):
         self.selectButton.setText(QtGui.QApplication.translate("MainWindow", "选择文件", None, QtGui.QApplication.UnicodeUTF8))
         self.searchButton.setText(QtGui.QApplication.translate("MainWindow", "查询", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("MainWindow", "关键词列表(空格分隔):", None, QtGui.QApplication.UnicodeUTF8))
+        self.fileList.setSortingEnabled(True)
         self.fileList.horizontalHeaderItem(0).setText(QtGui.QApplication.translate("MainWindow", "文件名", None, QtGui.QApplication.UnicodeUTF8))
         self.fileList.horizontalHeaderItem(1).setText(QtGui.QApplication.translate("MainWindow", "包含的关键字", None, QtGui.QApplication.UnicodeUTF8))
         self.buttonBox.setTitle(QtGui.QApplication.translate("MainWindow", "匹配算法选择", None, QtGui.QApplication.UnicodeUTF8))
+        self.useBMHBNFS.setText(QtGui.QApplication.translate("MainWindow", "BMHBNFS", None, QtGui.QApplication.UnicodeUTF8))
         self.useKMP.setText(QtGui.QApplication.translate("MainWindow", "KMP", None, QtGui.QApplication.UnicodeUTF8))
         self.useBM.setText(QtGui.QApplication.translate("MainWindow", "BM", None, QtGui.QApplication.UnicodeUTF8))
-        self.useBMHBNFS.setText(QtGui.QApplication.translate("MainWindow", "BMHBNFS", None, QtGui.QApplication.UnicodeUTF8))
 
 
 if __name__ == "__main__":

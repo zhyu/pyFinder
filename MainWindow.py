@@ -1,25 +1,14 @@
 # -*- coding: utf-8 -*-
 
-"""
-Module implementing MainWindow.
-"""
-
 import os
+import Finder
 from PySide.QtCore import Slot, QFile
 from PySide.QtGui import QMainWindow, QDesktopWidget, QFileDialog, QMessageBox, QTableWidgetItem
 from Ui_MainWindow import Ui_MainWindow
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
-    """
-    Class documentation goes here.
-    """
     def __init__(self, parent=None):
-        """
-        Constructor
-        
-        @param parent reference to the parent widget (QWidget)
-        """
         QMainWindow.__init__(self, parent)
         self.setupUi(self)
         self.center()
@@ -29,6 +18,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         screen = QDesktopWidget().screenGeometry()
         size = self.geometry()
         self.move((screen.width()-size.width())/2, (screen.height()-size.height())/2)
+        
+    def clearResult(self):
+        for idx in xrange(self.fileList.rowCount()):
+            self.fileList.setItem(idx, 1, QTableWidgetItem(''))
+            
+    def updateResult(self):
+        for idx in xrange(self.fileList.rowCount()):
+            item = self.fileList.item(idx, 0)
+            contentList = self.result[item.text()]
+            content = ' '.join(contentList)
+            self.fileList.setItem(idx, 1, QTableWidgetItem(content))
     
     @Slot()
     def on_selectButton_clicked(self):
@@ -44,8 +44,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.files is None:
             QMessageBox.critical(self, u'错误', u'未选择要查询的文件')
         else:
-            self.keywords = self.keywordList.text()
-            if self.keywords == '':
+            self.keywords = list(set(self.keywordList.text().split()))
+            if len(self.keywords) == 0:
                 QMessageBox.critical(self, u'错误', u'未输入要查询的关键词')
-                
+            else:
+                flag = 0
+                if self.useKMP.isChecked(): flag = 1
+                if self.useBM.isChecked(): flag = 2
+                self.result = Finder.Find(self.files, self.keywords, flag)
+                self.updateResult()
         
