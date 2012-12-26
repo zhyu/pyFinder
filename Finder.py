@@ -56,7 +56,8 @@ def Find(files, keywords, flag):
         fileName = os.path.split(filePath)[1]
         result[fileName] = []
         data = open(filePath).read()
-        encoding = chardet.detect(data)['encoding']
+        encoding = chardet.detect(data)['encoding'].lower()
+        encoding = 'GB18030' if encoding == 'gb2312' else encoding
 	data = data.decode(encoding)
 	for keyword in keywords:
 	    if find(data, keyword, flag):
